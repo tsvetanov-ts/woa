@@ -1,0 +1,1213 @@
+Model {
+  Name			  "Model_XSA"
+  Version		  3.00
+  SimParamPage		  "Solver"
+  SampleTimeColors	  off
+  InvariantConstants	  off
+  WideVectorLines	  off
+  ShowLineWidths	  on
+  ShowPortDataTypes	  off
+  StartTime		  "    0.0167"
+  StopTime		  "7.6"
+  SolverMode		  "Auto"
+  Solver		  "ode45"
+  RelTol		  "1e-3"
+  AbsTol		  "1e-3"
+  Refine		  "1"
+  MaxStep		  "0.001"
+  InitialStep		  "auto"
+  FixedStep		  "auto"
+  MaxOrder		  5
+  OutputOption		  "RefineOutputTimes"
+  OutputTimes		  "[]"
+  LoadExternalInput	  off
+  ExternalInput		  "[t, u]"
+  SaveTime		  off
+  TimeSaveName		  "tout"
+  SaveState		  off
+  StateSaveName		  "xout"
+  SaveOutput		  off
+  OutputSaveName	  "yout"
+  LoadInitialState	  off
+  InitialState		  "xInitial"
+  SaveFinalState	  off
+  FinalStateName	  "xFinal"
+  SaveFormat		  "Matrix"
+  LimitMaxRows		  off
+  MaxRows		  "1000"
+  Decimation		  "1"
+  AlgebraicLoopMsg	  "warning"
+  MinStepSizeMsg	  "warning"
+  UnconnectedInputMsg	  "warning"
+  UnconnectedOutputMsg	  "warning"
+  UnconnectedLineMsg	  "warning"
+  InheritedTsInSrcMsg	  "warning"
+  IntegerOverflowMsg	  "warning"
+  UnnecessaryDatatypeConvMsg "none"
+  Int32ToFloatConvMsg	  "warning"
+  SignalLabelMismatchMsg  "none"
+  ConsistencyChecking	  "off"
+  ZeroCross		  on
+  SimulationMode	  "normal"
+  BlockDataTips		  on
+  BlockParametersDataTip  on
+  BlockAttributesDataTip  off
+  BlockPortWidthsDataTip  on
+  BlockDescriptionStringDataTip	off
+  BlockMaskParametersDataTip off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  OptimizeBlockIOStorage  on
+  BufferReuse		  on
+  BooleanDataType	  off
+  RTWSystemTargetFile	  "grt.tlc"
+  RTWInlineParameters	  off
+  RTWRetainRTWFile	  off
+  RTWTemplateMakefile	  "grt_default_tmf"
+  RTWMakeCommand	  "make_rtw"
+  RTWGenerateCodeOnly	  off
+  ExtModeMexFile	  "ext_comm"
+  ExtModeBatchMode	  off
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "oneshot"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  off
+  Created		  "Thu Jul 19 10:05:05 2001"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "ME"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Sun Feb 19 19:40:30 2006"
+  ModelVersionFormat	  "1.%<AutoIncrement:76>"
+  ConfigurationManager	  "none"
+  BlockDefaults {
+    Orientation		    "right"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  System {
+    Name		    "Model_XSA"
+    Location		    [238, 195, 1050, 662]
+    Open		    on
+    ModelBrowserVisibility  on
+    ModelBrowserWidth	    161
+    ScreenColor		    "automatic"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "usletter"
+    PaperUnits		    "inches"
+    ZoomFactor		    "100"
+    AutoZoom		    on
+    ReportName		    "simulink-default.rpt"
+    Block {
+      BlockType		      SubSystem
+      Name		      "A"
+      Ports		      [3, 1, 0, 0, 0]
+      Position		      [160, 260, 190, 330]
+      ShowPortLabels	      off
+      System {
+	Name			"A"
+	Location		[238, 195, 1050, 662]
+	Open			off
+	ModelBrowserVisibility	on
+	ModelBrowserWidth	212
+	ScreenColor		"automatic"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	ZoomFactor		"100"
+	AutoZoom		on
+	Block {
+	  BlockType		  Inport
+	  Name			  "X"
+	  Position		  [15, 30, 35, 50]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	  DataType		  "auto"
+	  SignalType		  "auto"
+	  Interpolate		  on
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "mu"
+	  Position		  [15, 70, 35, 90]
+	  Port			  "2"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	  DataType		  "auto"
+	  SignalType		  "auto"
+	  Interpolate		  on
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "F/V"
+	  Position		  [15, 185, 35, 205]
+	  Port			  "3"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	  DataType		  "auto"
+	  SignalType		  "auto"
+	  Interpolate		  on
+	}
+	Block {
+	  BlockType		  Integrator
+	  Name			  "A"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [230, 54, 260, 86]
+	  ExternalReset		  "none"
+	  InitialConditionSource  "internal"
+	  InitialCondition	  "Ad(1)"
+	  LimitOutput		  off
+	  UpperSaturationLimit	  "inf"
+	  LowerSaturationLimit	  "-inf"
+	  ShowSaturationPort	  off
+	  ShowStatePort		  off
+	  AbsoluteTolerance	  "auto"
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "F*A/V"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [95, 187, 120, 223]
+	  Inputs		  "2"
+	  SaturateOnIntegerOverflow on
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "K1"
+	  Position		  [15, 112, 40, 138]
+	  Value			  "K2"
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "K2*mu*X"
+	  Ports			  [3, 1, 0, 0, 0]
+	  Position		  [100, 46, 120, 124]
+	  Inputs		  "3"
+	  SaturateOnIntegerOverflow on
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "dA/dt"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [170, 60, 190, 80]
+	  IconShape		  "rectangular"
+	  Inputs		  "+-"
+	  SaturateOnIntegerOverflow on
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Aout"
+	  Position		  [325, 60, 345, 80]
+	  Port			  "1"
+	  OutputWhenDisabled	  "held"
+	  InitialOutput		  "[]"
+	}
+	Line {
+	  SrcBlock		  "A"
+	  SrcPort		  1
+	  Points		  [30, 0]
+	  Branch {
+	    DstBlock		    "Aout"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 170; -215, 0]
+	    DstBlock		    "F*A/V"
+	    DstPort		    2
+	  }
+	}
+	Line {
+	  SrcBlock		  "dA/dt"
+	  SrcPort		  1
+	  DstBlock		  "A"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "K2*mu*X"
+	  SrcPort		  1
+	  Points		  [0, -20]
+	  DstBlock		  "dA/dt"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "X"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, 20]
+	  DstBlock		  "K2*mu*X"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "mu"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, 5]
+	  DstBlock		  "K2*mu*X"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "F/V"
+	  SrcPort		  1
+	  DstBlock		  "F*A/V"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "F*A/V"
+	  SrcPort		  1
+	  Points		  [15, 0; 0, -130]
+	  DstBlock		  "dA/dt"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "K1"
+	  SrcPort		  1
+	  Points		  [25, 0; 0, -20; 15, 0]
+	  DstBlock		  "K2*mu*X"
+	  DstPort		  3
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "D"
+      Ports		      [0, 1, 0, 0, 0]
+      Position		      [45, 185, 75, 235]
+      ShowPortLabels	      off
+      System {
+	Name			"D"
+	Location		[228, 193, 1075, 660]
+	Open			off
+	ModelBrowserVisibility	on
+	ModelBrowserWidth	200
+	ScreenColor		"automatic"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	ZoomFactor		"100"
+	AutoZoom		on
+	Block {
+	  BlockType		  Lookup
+	  Name			  "F"
+	  Position		  [95, 21, 135, 49]
+	  InputValues		  "t"
+	  OutputValues		  "F"
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "F/V"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [195, 21, 230, 79]
+	  ShowPortLabels	  off
+	  MaskType		  "/"
+	  MaskDescription	  "Division of two scalars. y=u[1]/u[2]"
+	  MaskHelp		  "Division of two scalars: y=u[1]/u[2]"
+	  MaskDisplay		  "disp('/')"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  System {
+	    Name		    "F/V"
+	    Location		    [146, 218, 673, 544]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "automatic"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    ZoomFactor		    "100"
+	    AutoZoom		    on
+	    Block {
+	      BlockType		      Inport
+	      Name		      "F"
+	      Position		      [65, 30, 85, 50]
+	      Port		      "1"
+	      PortWidth		      "-1"
+	      SampleTime	      "-1"
+	      DataType		      "auto"
+	      SignalType	      "auto"
+	      Interpolate	      on
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "V"
+	      Position		      [65, 65, 85, 85]
+	      Port		      "2"
+	      PortWidth		      "-1"
+	      SampleTime	      "-1"
+	      DataType		      "auto"
+	      SignalType	      "auto"
+	      Interpolate	      on
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "(Mmax*S)/Ks+S"
+	      Ports		      [2, 1, 0, 0, 0]
+	      Position		      [200, 22, 230, 93]
+	      Inputs		      "2"
+	      SaturateOnIntegerOverflow	on
+	    }
+	    Block {
+	      BlockType		      Math
+	      Name		      "Math\nFunction"
+	      Ports		      [1, 1, 0, 0, 0]
+	      Position		      [120, 60, 150, 90]
+	      Operator		      "reciprocal"
+	      OutputSignalType	      "auto"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "out_1"
+	      Position		      [275, 50, 295, 70]
+	      Port		      "1"
+	      OutputWhenDisabled      "held"
+	      InitialOutput	      "[]"
+	    }
+	    Line {
+	      SrcBlock		      "F"
+	      SrcPort		      1
+	      DstBlock		      "(Mmax*S)/Ks+S"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "V"
+	      SrcPort		      1
+	      DstBlock		      "Math\nFunction"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Math\nFunction"
+	      SrcPort		      1
+	      DstBlock		      "(Mmax*S)/Ks+S"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "(Mmax*S)/Ks+S"
+	      SrcPort		      1
+	      DstBlock		      "out_1"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Clock
+	  Name			  "Time"
+	  Position		  [30, 25, 50, 45]
+	  DisplayTime		  off
+	  Decimation		  "10"
+	}
+	Block {
+	  BlockType		  Lookup
+	  Name			  "V"
+	  Position		  [95, 62, 135, 98]
+	  InputValues		  "t"
+	  OutputValues		  "V"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "out_1"
+	  Position		  [280, 40, 300, 60]
+	  Port			  "1"
+	  OutputWhenDisabled	  "held"
+	  InitialOutput		  "[]"
+	}
+	Line {
+	  SrcBlock		  "F/V"
+	  SrcPort		  1
+	  DstBlock		  "out_1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "F"
+	  SrcPort		  1
+	  DstBlock		  "F/V"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "V"
+	  SrcPort		  1
+	  Points		  [40, 0]
+	  DstBlock		  "F/V"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Time"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    DstBlock		    "F"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 45]
+	    DstBlock		    "V"
+	    DstPort		    1
+	  }
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Monod"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [50, 35, 85, 85]
+      ShowPortLabels	      off
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      System {
+	Name			"Monod"
+	Location		[238, 195, 1050, 662]
+	Open			off
+	ModelBrowserVisibility	on
+	ModelBrowserWidth	200
+	ScreenColor		"automatic"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	ZoomFactor		"100"
+	AutoZoom		on
+	Block {
+	  BlockType		  Inport
+	  Name			  "S"
+	  Position		  [15, 185, 35, 205]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	  DataType		  "auto"
+	  SignalType		  "auto"
+	  Interpolate		  on
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Division"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [290, 117, 315, 153]
+	  ShowPortLabels	  off
+	  MaskType		  "/"
+	  MaskDescription	  "Division of two scalars. y=u[1]/u[2]"
+	  MaskHelp		  "Division of two scalars: y=u[1]/u[2]"
+	  MaskDisplay		  "disp('/')"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  System {
+	    Name		    "Division"
+	    Location		    [163, 373, 690, 699]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "automatic"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    ZoomFactor		    "100"
+	    AutoZoom		    on
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Mmax*S"
+	      Position		      [65, 30, 85, 50]
+	      Port		      "1"
+	      PortWidth		      "-1"
+	      SampleTime	      "-1"
+	      DataType		      "auto"
+	      SignalType	      "auto"
+	      Interpolate	      on
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Ks+S"
+	      Position		      [65, 65, 85, 85]
+	      Port		      "2"
+	      PortWidth		      "-1"
+	      SampleTime	      "-1"
+	      DataType		      "auto"
+	      SignalType	      "auto"
+	      Interpolate	      on
+	    }
+	    Block {
+	      BlockType		      Product
+	      Name		      "(Mmax*S)/Ks+S"
+	      Ports		      [2, 1, 0, 0, 0]
+	      Position		      [200, 22, 230, 93]
+	      Inputs		      "2"
+	      SaturateOnIntegerOverflow	on
+	    }
+	    Block {
+	      BlockType		      Math
+	      Name		      "Math\nFunction"
+	      Ports		      [1, 1, 0, 0, 0]
+	      Position		      [120, 60, 150, 90]
+	      Operator		      "reciprocal"
+	      OutputSignalType	      "auto"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "out_1"
+	      Position		      [275, 50, 295, 70]
+	      Port		      "1"
+	      OutputWhenDisabled      "held"
+	      InitialOutput	      "[]"
+	    }
+	    Line {
+	      SrcBlock		      "Mmax*S"
+	      SrcPort		      1
+	      DstBlock		      "(Mmax*S)/Ks+S"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Ks+S"
+	      SrcPort		      1
+	      DstBlock		      "Math\nFunction"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Math\nFunction"
+	      SrcPort		      1
+	      DstBlock		      "(Mmax*S)/Ks+S"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "(Mmax*S)/Ks+S"
+	      SrcPort		      1
+	      DstBlock		      "out_1"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Ks"
+	  Position		  [115, 161, 145, 179]
+	  Value			  "Ks"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Ks+S"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [185, 165, 205, 185]
+	  IconShape		  "rectangular"
+	  Inputs		  "++"
+	  SaturateOnIntegerOverflow on
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Mmax"
+	  Position		  [75, 91, 105, 109]
+	  Value			  "Mmax"
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "Mmax*S"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [180, 115, 205, 135]
+	  Inputs		  "2"
+	  SaturateOnIntegerOverflow on
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "mu"
+	  Position		  [365, 125, 385, 145]
+	  Port			  "1"
+	  OutputWhenDisabled	  "held"
+	  InitialOutput		  "[]"
+	}
+	Line {
+	  SrcBlock		  "Mmax"
+	  SrcPort		  1
+	  Points		  [25, 0; 0, 20]
+	  DstBlock		  "Mmax*S"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Mmax*S"
+	  SrcPort		  1
+	  DstBlock		  "Division"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Ks+S"
+	  SrcPort		  1
+	  Points		  [30, 0; 0, -30]
+	  DstBlock		  "Division"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Ks"
+	  SrcPort		  1
+	  DstBlock		  "Ks+S"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "S"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    Points		    [105, 0; 0, -15]
+	    DstBlock		    "Ks+S"
+	    DstPort		    2
+	  }
+	  Branch {
+	    Points		    [0, -65]
+	    DstBlock		    "Mmax*S"
+	    DstPort		    2
+	  }
+	}
+	Line {
+	  SrcBlock		  "Division"
+	  SrcPort		  1
+	  DstBlock		  "mu"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "S"
+      Ports		      [3, 1, 0, 0, 0]
+      Position		      [160, 156, 190, 224]
+      ShowPortLabels	      off
+      System {
+	Name			"S"
+	Location		[228, 193, 1075, 660]
+	Open			off
+	ModelBrowserVisibility	on
+	ModelBrowserWidth	138
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	ZoomFactor		"100"
+	AutoZoom		on
+	Block {
+	  BlockType		  Inport
+	  Name			  "X"
+	  Position		  [20, 20, 40, 40]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	  DataType		  "auto"
+	  SignalType		  "auto"
+	  Interpolate		  on
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "mu"
+	  Position		  [20, 60, 40, 80]
+	  Port			  "2"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	  DataType		  "auto"
+	  SignalType		  "auto"
+	  Interpolate		  on
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "F/V"
+	  Position		  [20, 185, 40, 205]
+	  Port			  "3"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	  DataType		  "auto"
+	  SignalType		  "auto"
+	  Interpolate		  on
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "F*(Sin-S)/V"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [150, 155, 175, 210]
+	  Inputs		  "2"
+	  SaturateOnIntegerOverflow on
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "K1"
+	  Position		  [15, 97, 40, 123]
+	  Value			  "K1"
+	}
+	Block {
+	  BlockType		  Integrator
+	  Name			  "S"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [305, 50, 330, 80]
+	  ExternalReset		  "none"
+	  InitialConditionSource  "internal"
+	  InitialCondition	  "Sd(1)"
+	  LimitOutput		  off
+	  UpperSaturationLimit	  "1000"
+	  LowerSaturationLimit	  "0"
+	  ShowSaturationPort	  off
+	  ShowStatePort		  off
+	  AbsoluteTolerance	  "auto"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Sin"
+	  Position		  [20, 147, 45, 173]
+	  Value			  "100"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sin-S"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [90, 152, 110, 183]
+	  IconShape		  "rectangular"
+	  Inputs		  "+-"
+	  SaturateOnIntegerOverflow on
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "dS/dt"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [240, 37, 270, 88]
+	  IconShape		  "rectangular"
+	  Inputs		  "-+"
+	  SaturateOnIntegerOverflow on
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "mu*K1*X"
+	  Ports			  [3, 1, 0, 0, 0]
+	  Position		  [100, 13, 130, 127]
+	  Inputs		  "3"
+	  SaturateOnIntegerOverflow on
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Sout"
+	  Position		  [375, 50, 395, 70]
+	  Port			  "1"
+	  OutputWhenDisabled	  "held"
+	  InitialOutput		  "[]"
+	}
+	Line {
+	  SrcBlock		  "S"
+	  SrcPort		  1
+	  Points		  [0, -5; 20, 0]
+	  Branch {
+	    DstBlock		    "Sout"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 170; -290, 0; 0, -55]
+	    DstBlock		    "Sin-S"
+	    DstPort		    2
+	  }
+	}
+	Line {
+	  SrcBlock		  "Sin-S"
+	  SrcPort		  1
+	  DstBlock		  "F*(Sin-S)/V"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sin"
+	  SrcPort		  1
+	  DstBlock		  "Sin-S"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "X"
+	  SrcPort		  1
+	  DstBlock		  "mu*K1*X"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "F/V"
+	  SrcPort		  1
+	  DstBlock		  "F*(Sin-S)/V"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "mu*K1*X"
+	  SrcPort		  1
+	  Points		  [40, 0; 0, -20]
+	  DstBlock		  "dS/dt"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "F*(Sin-S)/V"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, -110]
+	  DstBlock		  "dS/dt"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "dS/dt"
+	  SrcPort		  1
+	  DstBlock		  "S"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "mu"
+	  SrcPort		  1
+	  DstBlock		  "mu*K1*X"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "K1"
+	  SrcPort		  1
+	  DstBlock		  "mu*K1*X"
+	  DstPort		  3
+	}
+      }
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "Sout"
+      Position		      [270, 175, 330, 205]
+      VariableName	      "Sout"
+      Buffer		      "1000"
+      Decimation	      "1"
+      SampleTime	      "-1"
+      SaveFormat	      "Matrix"
+    }
+    Block {
+      BlockType		      Clock
+      Name		      "Time"
+      Position		      [215, 129, 255, 151]
+      DisplayTime	      on
+      Decimation	      "10"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "X"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [160, 39, 190, 106]
+      ShowPortLabels	      off
+      System {
+	Name			"X"
+	Location		[228, 193, 1075, 660]
+	Open			off
+	ModelBrowserVisibility	on
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	ZoomFactor		"100"
+	AutoZoom		on
+	Block {
+	  BlockType		  Inport
+	  Name			  "mu"
+	  Position		  [15, 55, 35, 75]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	  DataType		  "auto"
+	  SignalType		  "auto"
+	  Interpolate		  on
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "F/V"
+	  Position		  [15, 120, 35, 140]
+	  Port			  "2"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	  DataType		  "auto"
+	  SignalType		  "auto"
+	  Interpolate		  on
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "F*X/V"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [150, 102, 175, 138]
+	  Inputs		  "2"
+	  SaturateOnIntegerOverflow on
+	}
+	Block {
+	  BlockType		  Integrator
+	  Name			  "X"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [285, 60, 325, 90]
+	  ExternalReset		  "none"
+	  InitialConditionSource  "internal"
+	  InitialCondition	  "Xd(1)"
+	  LimitOutput		  off
+	  UpperSaturationLimit	  "1000"
+	  LowerSaturationLimit	  "0"
+	  ShowSaturationPort	  off
+	  ShowStatePort		  off
+	  AbsoluteTolerance	  "auto"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "dX/dt"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [235, 65, 255, 85]
+	  IconShape		  "rectangular"
+	  Inputs		  "+-"
+	  SaturateOnIntegerOverflow on
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "mu*X"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [100, 59, 125, 81]
+	  Inputs		  "2"
+	  SaturateOnIntegerOverflow on
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "XOut"
+	  Position		  [400, 65, 420, 85]
+	  Port			  "1"
+	  OutputWhenDisabled	  "held"
+	  InitialOutput		  "[]"
+	}
+	Line {
+	  SrcBlock		  "F*X/V"
+	  SrcPort		  1
+	  Points		  [30, 0; 0, -40]
+	  DstBlock		  "dX/dt"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "dX/dt"
+	  SrcPort		  1
+	  DstBlock		  "X"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "mu*X"
+	  SrcPort		  1
+	  DstBlock		  "dX/dt"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "mu"
+	  SrcPort		  1
+	  DstBlock		  "mu*X"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "X"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    DstBlock		    "XOut"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 90; -230, 0]
+	    Branch {
+	      Points		      [-65, 0; 0, -90]
+	      DstBlock		      "mu*X"
+	      DstPort		      2
+	    }
+	    Branch {
+	      Points		      [0, -55]
+	      DstBlock		      "F*X/V"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "F/V"
+	  SrcPort		  1
+	  DstBlock		  "F*X/V"
+	  DstPort		  2
+	}
+      }
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "Xout"
+      Position		      [265, 60, 325, 90]
+      VariableName	      "Xout"
+      Buffer		      "1000"
+      Decimation	      "1"
+      SampleTime	      "-1"
+      SaveFormat	      "Matrix"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "tout"
+      Position		      [270, 125, 330, 155]
+      VariableName	      "tout"
+      Buffer		      "1000"
+      Decimation	      "1"
+      SampleTime	      "-1"
+      SaveFormat	      "Matrix"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "AOut1"
+      Position		      [375, 35, 395, 55]
+      Port		      "1"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "AOut2"
+      Position		      [375, 155, 395, 175]
+      Port		      "2"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "AOut"
+      Position		      [340, 285, 360, 305]
+      Port		      "3"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+    }
+    Line {
+      SrcBlock		      "X"
+      SrcPort		      1
+      Points		      [0, 0; 15, 0]
+      Branch {
+	Points			[0, 70; -85, 0; 0, 25]
+	Branch {
+	  DstBlock		  "S"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, 100]
+	  DstBlock		  "A"
+	  DstPort		  1
+	}
+      }
+      Branch {
+	Points			[20, 0]
+	Branch {
+	  DstBlock		  "Xout"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, -30]
+	  DstBlock		  "AOut1"
+	  DstPort		  1
+	}
+      }
+    }
+    Line {
+      SrcBlock		      "Time"
+      SrcPort		      1
+      DstBlock		      "tout"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Monod"
+      SrcPort		      1
+      Points		      [0, -5; 20, 0]
+      Branch {
+	DstBlock		"X"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 135]
+	Branch {
+	  DstBlock		  "S"
+	  DstPort		  2
+	}
+	Branch {
+	  Points		  [0, 105]
+	  DstBlock		  "A"
+	  DstPort		  2
+	}
+      }
+    }
+    Line {
+      SrcBlock		      "D"
+      SrcPort		      1
+      Points		      [0, 0; 5, 0]
+      Branch {
+	Points			[20, 0]
+	Branch {
+	  DstBlock		  "S"
+	  DstPort		  3
+	}
+	Branch {
+	  Points		  [0, -120]
+	  DstBlock		  "X"
+	  DstPort		  2
+	}
+      }
+      Branch {
+	Points			[0, 110]
+	DstBlock		"A"
+	DstPort			3
+      }
+    }
+    Line {
+      SrcBlock		      "S"
+      SrcPort		      1
+      Points		      [50, 0]
+      Branch {
+	DstBlock		"Sout"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 50; 115, 0]
+	Branch {
+	  DstBlock		  "AOut2"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [75, 0; 0, -225; -400, 0]
+	  DstBlock		  "Monod"
+	  DstPort		  1
+	}
+      }
+    }
+    Line {
+      SrcBlock		      "A"
+      SrcPort		      1
+      DstBlock		      "AOut"
+      DstPort		      1
+    }
+  }
+}
