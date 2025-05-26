@@ -30,7 +30,6 @@
 % define lb and ub as two single number numbers
 
 % To run WOA: [Best_score,Best_pos,WOA_cg_curve]=WOA(SearchAgents_no,Max_iteration,lb,ub,dim,fobj)
-%__________________________________________
 
 clear all 
 clc
@@ -68,18 +67,16 @@ V0 = V(1);
 nd = find(ec1807kf(:, 1) >= 7.224 & ec1807kf(:, 1) <= 11.57);
 Sd(nd) = 2*0.08 - ec1807kf(nd,2);
 
-runtime = 10;%/*Algorithm can be run many times in order to see its robustness*/
+runtime = 30;%/*Algorithm can be run many times in order to see its robustness*/
 ttt = cputime;
 
 %WOA %
 
-SearchAgents_no=200; % Number of search agents
+SearchAgents_no=50; % Number of search agents
 
-Function_name='F24'; % Name of the test function that can be from F1 to F23 (Table 1,2,3 in the paper)
+Function_name='F24';% Name of the test function that can be from F1 to F23 (Table 1,2,3 in the paper)
 
 Max_iteration=100; % Maximum number of iterations
-
-
 
 % Load details of the selected benchmark function
 [lb,ub,dim,fobj]=Get_Functions_details(Function_name);
@@ -105,9 +102,16 @@ for run = 1:runtime
 % title('Convergance curve'), xlabel('Iterations'), ylabel('Objective function')
 end
 
-save results_woa Results_all
 
-save convergence_woa Convergence_woa
+
+resultsfilename = "results_woa" + "_agents-" + SearchAgents_no + "_iters-" + Max_iteration + ".mat"
+save(resultsfilename, 'Results_all')
+
+convergencefilename = "convergence_woa" + "_agents-" + SearchAgents_no + "_iters-" + Max_iteration + ".mat"
+save(convergencefilename, 'Convergence_woa')
+
+%save resultsfilename Results_all
+%save convergence_woa Convergence_woa
 
 % figure('Position',[269   240   660   290])
 % %Draw search space
