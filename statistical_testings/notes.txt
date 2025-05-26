@@ -1,0 +1,51 @@
+/Users/tsvetan/Documents/fmi/second_semester/metaheuristics/Plot_results_last.m -> run -> brings out the dozens of charts 
+
+
+Test statisticsxlsx 
+
+Data for four algos. Col1 is error, other cols are params
+
+Plot statisticst .m
+
+
+This is like our algo, GA, SA, CSA
+
+Then we plot, box plots etc
+
+For the project we only look at error, box plots etc. for the error
+
+For project subplots with error + 4 algos
+
+Clear terminal = clc
+Close all plots = close all
+
+0.9646 on p12 means the two algos aren't statistically different (algo1 v algo2)
+
+Algo1 v Algo2 shows P12 =   2.1533e-06, which is statistically different. 
+The behaviour is different
+
+If p12 is >0.05 algos are the same, statistically, and you haven't really discovered anything
+
+
+Interpret data, no need for both wilcoxon and Friedman, one is enough
+
+
+100 iteration, 30 runs, as many agents as you like
+
+- generate solutions, lets say population 100 agents, on every iteration, function will be calculated 100 times. Total 10k calc. Run this 30 times. 
+- there are algos that split population in separate and calculating the total solution count gets more complicated (not just 100*100)
+
+Record time as well to see what error we get for what time
+
+Not a bad idea to fit params on the recorded, clean noiseless data. Then, hopefully it's good for real data. In real life though we only have real data. Or sth like that idk
+
+Добре
+Имаме 4 лекции, срок е 29 май за финален проект, тоест предпоследното занятие, тоест последните 2 занятия са защити. Преди това имаме 2 занятия.
+1/2 от време ще помага и отговаря на въпроси, 
+Другата половина ще приемем, че имаме модел и ще управляваме процеса. 
+
+За да настроим регулатора, пак ще използваме метаевр алгоритъм за да определим параметрите му. 
+
+Имаме реален процес, продукт (г/Л), пускаме регулатор и увеличаваме продукцията. 
+
+ 
