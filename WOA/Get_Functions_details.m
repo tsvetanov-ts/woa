@@ -166,7 +166,7 @@ switch F
         fobj = @F23;
         lb=0;
         ub=10;
-        dim=4;
+        % dim=4;
 
     case 'F24'
         fobj = @F24;
