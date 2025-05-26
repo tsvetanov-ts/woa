@@ -1,0 +1,29 @@
+# Makefile for icradata
+
+# Debug   -Og -g (compiler)
+# Release -O2 (compiler) -s (linker)
+
+CPP        = g++
+TARGET     = icradata
+LINK       = $(TARGET).o icra.o mytable.o mydraw.o strfun.o zerofun.o
+RM         = rm -f
+
+CCFLAGS    = -I../include/ -I../include/FL/images/ -std=c++17 -fopenmp -Wpedantic -Wall -O2
+LDFLAGS    = -L../lib/ -lfltk -lfltk_png -lfltk_z -lwayland-client -lwayland-cursor -lgobject-2.0 -lpangocairo-1.0 -lpango-1.0 -lcairo  -lxkbcommon -ldl -lX11 -lXcursor -lXext -lXfixes -lXft -lXrender -lXinerama -lfontconfig -l:libgomp.a -lm -lpthread -static-libgcc -static-libstdc++ -s
+
+$(TARGET): % : $(LINK)
+	$(CPP) $(LINK) -o $@ $(LDFLAGS)
+
+$(LINK): %.o : %.cxx
+	$(CPP) -c $< -o $@ $(CCFLAGS)
+
+.PHONY: all clean run
+
+all: $(TARGET)
+
+clean:
+	$(RM) $(TARGET) $(LINK)
+
+run:
+	./$(TARGET)
+

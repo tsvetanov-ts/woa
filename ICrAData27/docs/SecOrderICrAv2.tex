@@ -1,0 +1,161 @@
+%%%
+%%% Second order InterCriteria Analysis
+%%%
+
+\documentclass[12pt, a4paper]{article}
+
+
+\begin{document}
+
+\title{\textbf{\Large An idea for second order InterCriteria Analysis}}
+\author{Explanations by Nikolay Ikonomov}
+\date{\today}
+\maketitle
+
+
+\section{An idea for the method by Olympia Roeva}
+
+This section describes some ideas and concepts about second order InterCriteria Analysis (ICrA),
+where the third dimension is viewed as a parameter which changes its value.
+Real world example (data based on genetic algorithms) provided by Olympia Roeva.
+
+Suppose we have a matrix with 5 criteria and 30 objects.
+\[ \begin{array}{c|cccc}
+& O_1 & O_2 & \ldots & O_{30} \\
+\hline
+C_1 & C_1(O_1) & C_1(O_2) & \ldots & C_1(O_{30}) \\
+C_2 & C_2(O_1) & C_2(O_2) & \ldots & C_2(O_{30}) \\
+C_3 & C_3(O_1) & C_3(O_2) & \ldots & C_3(O_{30}) \\
+C_4 & C_4(O_1) & C_4(O_2) & \ldots & C_4(O_{30}) \\
+C_5 & C_5(O_1) & C_5(O_2) & \ldots & C_5(O_{30}) \\
+\end{array} \]
+Applying ICrA gives two matrices with size 5x5, one for $\mu$ and another one for $\nu$.
+Since the matrices are symmetric, we need only the elements from the lower triangular matrix
+(or upper, they are the same elements).
+
+Take these values as vectors, result is two vectors with size 10.
+\[ \begin{array}{c|ccccccc|cccc}
+V_\mu & & & & & & & V_\nu & & & & \\
+\cline{1-5} \cline{8-12}
+& V_{\mu,1} & V_{\mu,2} & \ldots & V_{\mu,10} & \mbox{ } & \mbox{ } & & V_{\nu,1} & V_{\nu,2} & \ldots & V_{\nu,10} \\
+\end{array} \]
+Suppose we have a parameter, which changes from 0.01 to 0.1 with step 0.01, the parameter has 100 different values.
+Apply the above for each value, result is 100 different matrices $\mu$ and $\nu$.
+
+Take only the values from the lower triangular matrix from each two matrices.
+\[ \begin{array}{c|ccccccc|cccc}
+V_\mu & o_1 & o_2 & \ldots & o_{10} & & & V_\nu & o_1 & o_2 & \ldots & o_{10} \\
+\cline{1-5} \cline{8-12}
+c_1 & V_{\mu,1,1} & V_{\mu,1,2} & \ldots & V_{\mu,1,10} & \mbox{ } & \mbox{ } & c_1 & V_{\nu,1,1} & V_{\nu,1,2} & \ldots & V_{\nu,1,10} \\
+c_2 & V_{\mu,2,1} & V_{\mu,2,2} & \ldots & V_{\mu,2,10} & \mbox{ } & \mbox{ } & c_2 & V_{\nu,2,1} & V_{\nu,2,2} & \ldots & V_{\nu,2,10} \\
+\vdots & \vdots & \vdots & \ddots & \vdots &   &   & \vdots & \vdots & \vdots & \ddots & \vdots \\
+c_{50} & V_{\mu,50,1} & V_{\mu,50,2} & \ldots & V_{\mu,50,10} & \mbox{ } & \mbox{ } & c_{50} & V_{\nu,50,1} & V_{\nu,50,2} & \ldots & V_{\nu,50,10} \\
+\vdots & \vdots & \vdots & \ddots & \vdots &   &   & \vdots & \vdots & \vdots & \ddots & \vdots \\
+c_{100} & V_{\mu,100,1} & V_{\mu,100,2} & \ldots & V_{\mu,100,10} & \mbox{ } & \mbox{ } & c_{100} & V_{\nu,100,1} & V_{\nu,100,2} & \ldots & V_{\nu,100,10}
+\end{array} \]
+We can view this data as 100 criteria and 10 objects.
+
+Now apply ICrA to these two matrices, loaded as ordered pair, and receive two matrices $\mu$ and $\nu$.
+Again, take only the values from the lower triangluar matrix, result is two vectors of size 100.
+The result shows the relation between the 100 different values of the parameter.
+
+First, we had objects and criteria, after ICrA, the result is viewed as new objects,
+each change of the parameter is viewed as a criteria, so that second ICrA can be applied.
+
+\bigskip
+What this algorithm does is the following:
+\begin{enumerate}
+\item load matrix of size 5x30 (5 criteria and 30 objects)
+\item apply ICrA and receive two matrices of size 5x5
+\item take the unique values as two vectors of size 10
+\item change a parameter 100 times and apply points 1-3
+\item write data as two matrices of size 100x10 (100 criteria and 10 objects)
+\item apply ICrA and receive two matrices of size 100x100
+\item take the unique values as two vectors of size 100
+\end{enumerate}
+
+ICrA was applied two times, therefore second order ICrA.
+The change of the parameter gives us 100 different states,
+this might be viewed as time, let's call it depth.
+The 30 objects can be viewed as width, and the 5 criteria as height.
+Therefore we have 30x5x100 (WxHxD), three dimensional ICrA.
+
+
+
+\section{An idea for the method by Velichka Traneva}
+
+This section describes some ideas and concepts about three dimensional InterCriteria Analysis, where $T$ is the third fixed scale and $t_g$ is its element. For example, index set $T$ can be interpreted as a time-scale and its elements $t_g$ -- as time-moments.
+
+Suppose we have a matrix with 5 criteria and 30 objects.
+\[ \begin{array}{c|cccc}
+& O_1 & O_2 & \ldots & O_{30} \\
+\hline
+C_1 & C_1(O_1) & C_1(O_2) & \ldots & C_1(O_{30}) \\
+C_2 & C_2(O_1) & C_2(O_2) & \ldots & C_2(O_{30}) \\
+C_3 & C_3(O_1) & C_3(O_2) & \ldots & C_3(O_{30}) \\
+C_4 & C_4(O_1) & C_4(O_2) & \ldots & C_4(O_{30}) \\
+C_5 & C_5(O_1) & C_5(O_2) & \ldots & C_5(O_{30}) \\
+\end{array} \]
+Applying ICrA gives two matrices with size 5x5, one for $\mu$ and another one for $\nu$.
+Let $t_k$ change 7 times, $t_1, t_2, \ldots, t_7$. Apply ICrA for each value.
+Result is 7 matrices for $\mu$ and $\nu$.
+\[ \begin{array}{c|cccc cc c|cccc}
+\mu(t_1) & & & & & & & \nu(t_1) & & & & \\
+\cline{1-5} \cline{8-12}
+& \mu_{1,1,t_1} & \mu_{1,2,t_1} & \ldots & \mu_{1,5,t_1} & \mbox{ } & \mbox{ } & & \nu_{1,1,t_1} & \nu_{1,2,t_1} & \ldots & \nu_{1,5,t_1} \\
+& \mu_{2,1,t_1} & \mu_{2,2,t_1} & \ldots & \mu_{2,5,t_1} & \mbox{ } & \mbox{ } & & \nu_{2,1,t_1} & \nu_{2,2,t_1} & \ldots & \nu_{2,5,t_1} \\
+& \vdots & \vdots & \ddots & \vdots & \mbox{ } & \mbox{ } & & \vdots & \vdots & \ddots & \vdots \\
+& \mu_{5,1,t_1} & \mu_{5,2,t_1} & \ldots & \mu_{5,5,t_1} & \mbox{ } & \mbox{ } & & \nu_{5,1,t_1} & \nu_{5,2,t_1} & \ldots & \nu_{5,5,t_1}
+\end{array} \]
+\[ \begin{array}{c|cccc cc c|cccc}
+\mu(t_2) & & & & & & & \nu(t_2) & & & & \\
+\cline{1-5} \cline{8-12}
+& \mu_{1,1,t_2} & \mu_{1,2,t_2} & \ldots & \mu_{1,5,t_2} & \mbox{ } & \mbox{ } & & \nu_{1,1,t_2} & \nu_{1,2,t_2} & \ldots & \nu_{1,5,t_2} \\
+& \mu_{2,1,t_2} & \mu_{2,2,t_2} & \ldots & \mu_{2,5,t_2} & \mbox{ } & \mbox{ } & & \nu_{2,1,t_2} & \nu_{2,2,t_2} & \ldots & \nu_{2,5,t_2} \\
+& \vdots & \vdots & \ddots & \vdots & \mbox{ } & \mbox{ } & & \vdots & \vdots & \ddots & \vdots \\
+& \mu_{5,1,t_2} & \mu_{5,2,t_2} & \ldots & \mu_{5,5,t_2} & \mbox{ } & \mbox{ } & & \nu_{5,1,t_2} & \nu_{5,2,t_2} & \ldots & \nu_{5,5,t_2}
+\end{array} \]
+\[ \begin{array}{ccc}
+\vdots & \hspace{7cm} & \vdots \\
+\end{array} \]
+\[ \begin{array}{c|cccc cc c|cccc}
+\mu(t_7) & & & & & & & \nu(t_7) & & & & \\
+\cline{1-5} \cline{8-12}
+& \mu_{1,1,t_7} & \mu_{1,2,t_7} & \ldots & \mu_{1,5,t_7} & \mbox{ } & \mbox{ } & & \nu_{1,1,t_7} & \nu_{1,2,t_7} & \ldots & \nu_{1,5,t_7} \\
+& \mu_{2,1,t_7} & \mu_{2,2,t_7} & \ldots & \mu_{2,5,t_7} & \mbox{ } & \mbox{ } & & \nu_{2,1,t_7} & \nu_{2,2,t_7} & \ldots & \nu_{2,5,t_7} \\
+& \vdots & \vdots & \ddots & \vdots & \mbox{ } & \mbox{ } & & \vdots & \vdots & \ddots & \vdots \\
+& \mu_{5,1,t_7} & \mu_{5,2,t_7} & \ldots & \mu_{5,5,t_7} & \mbox{ } & \mbox{ } & & \nu_{5,1,t_7} & \nu_{5,2,t_7} & \ldots & \nu_{5,5,t_7}
+\end{array} \]
+We apply an aggregation at each value $(i,j)$, thus creating an aggregated matrix for $\mu$ and aggregated matrix for $\nu$.
+
+\begin{itemize}
+\item MaxMin aggregation: that is, create new matrix of size 5x5,
+compute each value by taking all 7 values (at the respective indices) from the matrices $\mu(t_1),\ldots,\mu(t_7)$:
+\[ \mu_{i,j,R} = \max(\mu_{i,j,t_1},\mu_{i,j,t_2},\mu_{i,j,t_3},\mu_{i,j,t_4},\mu_{i,j,t_5},\mu_{i,j,t_6},\mu_{i,j,t_7}) \]
+This is the result matrix for $\mu$. Now create one more matrix of size 5x5, take values from $\nu(t_1),\ldots,\nu(t_7)$:
+\[ \nu_{i,j,R} = \min(\nu_{i,j,t_1},\nu_{i,j,t_2},\nu_{i,j,t_3},\nu_{i,j,t_4},\nu_{i,j,t_5},\nu_{i,j,t_6},\nu_{i,j,t_7}) \]
+And this is the reult matrix for $\nu$.
+
+\item MinMax aggregation: find the minimum values for $\mu$ and the maximum values for $\nu$:
+\[ \mu_{i,j,R} = \min(\mu_{i,j,t_1},\mu_{i,j,t_2},\mu_{i,j,t_3},\mu_{i,j,t_4},\mu_{i,j,t_5},\mu_{i,j,t_6},\mu_{i,j,t_7}) \]
+\[ \nu_{i,j,R} = \max(\nu_{i,j,t_1},\nu_{i,j,t_2},\nu_{i,j,t_3},\nu_{i,j,t_4},\nu_{i,j,t_5},\nu_{i,j,t_6},\nu_{i,j,t_7}) \]
+
+\item Average aggregation: find the arithmetic mean values for $\mu$ and for $\nu$:
+\[ \mu_{i,j,R} = (\mu_{i,j,t_1} + \mu_{i,j,t_2} + \mu_{i,j,t_3} + \mu_{i,j,t_4} + \mu_{i,j,t_5} + \mu_{i,j,t_6} + \mu_{i,j,t_7})/7 \]
+\[ \nu_{i,j,R} = (\nu_{i,j,t_1} + \nu_{i,j,t_2} + \nu_{i,j,t_3} + \nu_{i,j,t_4} + \nu_{i,j,t_5} + \nu_{i,j,t_6},\nu_{i,j,t_7})/7 \]
+\end{itemize}
+
+After we apply an aggregation, we receive two matrices of size 5x5, one for $\mu$ and another for $\nu$.
+\[ \begin{array}{c|cccc cc c|cccc}
+\mu(R) & & & & & & & \nu(R) & & & & \\
+\cline{1-5} \cline{8-12}
+& \mu_{1,1,R} & \mu_{1,2,R} & \ldots & \mu_{1,5,R} & \mbox{ } & \mbox{ } & & \nu_{1,1,R} & \nu_{1,2,R} & \ldots & \nu_{1,5,R} \\
+& \mu_{2,1,R} & \mu_{2,2,R} & \ldots & \mu_{2,5,R} & \mbox{ } & \mbox{ } & & \nu_{2,1,R} & \nu_{2,2,R} & \ldots & \nu_{2,5,R} \\
+& \vdots & \vdots & \ddots & \vdots & \mbox{ } & \mbox{ } & & \vdots & \vdots & \ddots & \vdots \\
+& \mu_{5,1,R} & \mu_{5,2,R} & \ldots & \mu_{5,5,R} & \mbox{ } & \mbox{ } & & \nu_{5,1,R} & \nu_{5,2,R} & \ldots & \nu_{5,5,R}
+\end{array} \]
+These matrices $\mu(R)$ and $\nu(R)$ can be considered as the final result.
+
+
+\end{document}
+

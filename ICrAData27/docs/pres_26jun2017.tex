@@ -1,0 +1,412 @@
+%%%
+%%% Presentation for June 26, 2017
+%%%
+
+% http://texblog.org/2008/01/21/create-your-slides-presentations-with-latex/
+% http://tex.stackexchange.com/questions/24035/typeset-mathematical-symbols-also-in-sans-serif-font
+% http://tex.stackexchange.com/questions/83545/int-with-limits-or-without
+% http://yihui.name/en/2010/08/numbered-figure-table-captions-in-beamer/
+
+% detokenize - http://tex.stackexchange.com/questions/48632/underscores-in-words-text
+
+%%% Трябва ни текст на кирилица за UTF8
+%%% Така TeXLive използва шрифтове cm-super, които изглеждат по-добре
+
+
+\documentclass{beamer}
+
+\usepackage{cmap}
+\usepackage[T1, T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, bulgarian]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+
+
+\usetheme{Madrid}
+\beamertemplatenavigationsymbolsempty
+
+\setbeamertemplate{caption}[numbered]
+% \setbeamertemplate{bibliography item}{\insertbiblabel}
+
+
+% \newcommand{\inclgraph}{\includegraphics[scale=0.9]}
+% \newcommand{\inclgraphtwo}{\includegraphics[scale=0.85]}
+% \newcommand{\inclgraphthree}{\includegraphics[scale=0.35]}
+
+% \newcommand{\inclgraph}{\detokenize}
+% \newcommand{\inclgraphtwo}{\detokenize}
+% \newcommand{\inclgraphthree}{\detokenize}
+
+\definecolor{red}{HTML}{FF0000}
+
+
+\begin{document}
+
+
+\title[ICrAData -- Софтуер за ИКрА]{ICrAData -- Софтуер за Интеркритериален анализ}
+\author[Н.Икономов, П.Василев, О.Роева]{Николай Икономов${}^1$, Петър Василев${}^2$, Олимпия Роева${}^2$}
+\institute[]{${}^1$Институт по математика и информатика, БАН\\nikonomov@math.bas.bg\\
+${}^2$Институт по биофизика и биомедицинско инженерство, БАН\\peter.vassilev@gmail.com, olympia@biomed.bas.bg}
+\date{26 юни 2017}
+
+\begin{frame}
+\maketitle
+\end{frame}
+
+
+\begin{frame}
+Интеркритериалният анализ \cite{amv2014} е основан на Индексирани матрици \cite{atanassov2014}
+и Интуиционистки размити множества \cite{atanassov2012}.
+
+\bigskip
+Нека имаме дадена индексирана матрица, където $O_n$ са обектите,\\a $C_n$ са критериите по които оценяваме:
+\begin{center}
+\begin{tabular}{c|cccc}
+& $O_1$ & $O_2$ & \ldots & $O_n$ \\
+\hline $C_1$ & $C_1(O_1)$ & $C_1(O_2)$ & \ldots & $C_1(O_n)$ \\
+$C_2$ & $C_2(O_1)$ & $C_2(O_2)$ & \ldots & $C_2(O_n)$ \\
+\ldots & \ldots & \ldots & \ldots & \ldots \\
+$C_m$ & $C_m(O_1)$ & $C_m(O_2)$ & \ldots & $C_m(O_n)$
+\end{tabular}
+\end{center}
+
+Критериалната матрица, създадена от индексираната матрица, е:
+\begin{center}
+\begin{tabular}{c|cccc}
+& & & & \\
+\hline $C_1$ & {\scriptsize $C_1(O_1)-C_1(O_2)$} & {\scriptsize $C_1(O_1)-C_1(O_3)$} \ldots &
+	{\scriptsize $C_1(O_1)-C_1(O_n)$} & {\scriptsize $C_1(O_2)-C_1(O_3)$}\ldots \\
+$C_2$ & {\scriptsize $C_2(O_1)-C_2(O_2)$} & {\scriptsize $C_2(O_1)-C_2(O_3)$} \ldots &
+	{\scriptsize $C_2(O_1)-C_2(O_n)$} & {\scriptsize $C_2(O_2)-C_2(O_3)$}\ldots \\
+\ldots & \ldots & \ldots & \ldots & \ldots \\
+$C_n$ & {\scriptsize $C_n(O_1)-C_n(O_2)$} & {\scriptsize $C_n(O_1)-C_n(O_3)$} \ldots &
+	{\scriptsize $C_n(O_1)-C_n(O_n)$} & {\scriptsize $C_n(O_2)-C_n(O_3)$}\ldots
+\end{tabular}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+Ще покажем нагледно алгоритъма с пример:
+\begin{center}
+\begin{tabular}{c|ccccc}
+& $O_1$ & $O_2$ & $O_3$ & $O_4$ & $O_5$ \\
+\hline $C_1$ & 6 & 5 & 3 & 7 & 6 \\
+$C_2$ & 7 & 7 & 8 & 1 & 3 \\
+$C_3$ & 4 & 3 & 5 & 9 & 1 \\
+$C_4$ & 4 & 5 & 6 & 7 & 8 \\
+\end{tabular}
+\end{center}
+
+Критериалната матрица е:
+\begin{center}
+\begin{tabular}{c|cccccccccc}
+& {\tiny (1-2)} & {\tiny (1-3)} & {\tiny (1-4)} & {\tiny (1-5)} &
+{\tiny (2-3)} & {\tiny (2-4)} & {\tiny (2-5)} & {\tiny (3-4)} & {\tiny (3-5)} & {\tiny (4-5)} \\
+\hline $C_1$ & 1 & 3 & -1 & 0 & 2 & -2 & -1 & -4 & -3 & 1 \\
+$C_2$ & 0 & -1 & 6 & 4 & -1 & 6 & 4 & 7 & 5 & -2 \\
+$C_3$ & 1 & -1 & -5 & 3 & -2 & -6 & 2 & -4 & 4 & 8 \\
+$C_4$ & -1 & -2 & -3 & -4 & -1 & -2 & -3 & -1 & -2 & -1
+\end{tabular}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+Сега създаваме нова матрица, която взима само знака на всяко число от критериалната матрица:
+\begin{center}
+\begin{tabular}{c|cccccccccc}
+& & & & & & & & & & \\
+\hline $S_1$ & 1 & 1 & -1 & 0 & 1 & -1 & -1 & -1 & -1 & 1 \\
+$S_2$ & 0 & -1 & 1 & 1 & -1 & 1 & 1 & 1 & 1 & -1 \\
+$S_3$ & 1 & -1 & -1 & 1 & -1 & -1 & 1 & -1 & 1 & 1 \\
+$S_4$ & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1
+\end{tabular}
+\end{center}
+
+Крайната матрица (която е резултата) се получава чрез сравняване на всеки ред с всички редове,
+можем да запишем така:
+\begin{center}
+\begin{tabular}{c|cccc}
+& $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & $S_1\#S_1$ & $S_1\#S_2$ & $S_1\#S_3$ & $S_1\#S_4$ \\
+$C_2$ & - & $S_2\#S_2$ & $S_2\#S_3$ & $S_2\#S_4$ \\
+$C_3$ & - & - & $S_3\#S_3$ & $S_3\#S_4$ \\
+$C_4$ & - & - & - & $S_4\#S_4$
+\end{tabular}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+Метод \textbf{$\mu$-biased}.
+
+\bigskip
+Използваме тези сравнения за матрица $\mu$: $0=0$, $1=1$, $-1=-1$.
+Както и следните сравнения за матрица $\nu$: $-1\neq1$, $1\neq-1$.
+
+\begin{center}
+\begin{tabular}{c|cccccccccc}
+& & & & & & & & & & \\
+\hline $S_1$ & 1 & 1 & -1 & 0 & 1 & -1 & -1 & -1 & -1 & 1 \\
+$S_2$ & 0 & -1 & 1 & 1 & -1 & 1 & 1 & 1 & 1 & -1 \\
+$S_3$ & 1 & -1 & -1 & 1 & -1 & -1 & 1 & -1 & 1 & 1 \\
+$S_4$ & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{minipage}[b]{0.4\linewidth}
+\begin{tabular}{c|cccc}
+$\mu$ & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & 1 & 0 & 0.5 & 0.5 \\
+$C_2$ & - & 1 & 0.5 & 0.3 \\
+$C_3$ & - & - & 1 & 0.5 \\
+$C_4$ & - & - & - & 1
+\end{tabular}
+\end{minipage}
+\begin{minipage}[b]{0.4\linewidth}
+\begin{tabular}{c|cccc}
+$\nu$ & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & 0 & 0.8 & 0.4 & 0.4 \\
+$C_2$ & - & 0 & 0.4 & 0.6 \\
+$C_3$ & - & - & 0 & 0.5 \\
+$C_4$ & - & - & - & 0
+\end{tabular}
+\end{minipage}
+\end{center}
+
+Броим съвпадащите (или несъвпадащите) елементи между два реда и разделяме на броя на колоните.
+\end{frame}
+
+
+\begin{frame}
+Метод \textbf{Unbiased}.
+
+\bigskip
+Сравнения за матрица $\mu$: $1=1$, $-1=-1$.\\
+Сравнения за матрица $\nu$: $-1\neq1$, $1\neq-1$.\\
+Сравнението $0$ и $0$ не се брои, то е неопределен елемент.
+
+\begin{center}
+\begin{tabular}{c|cccccccccc}
+& & & & & & & & & & \\
+\hline $S_1$ & 1 & 1 & -1 & 0 & 1 & -1 & -1 & -1 & -1 & 1 \\
+$S_2$ & 0 & -1 & 1 & 1 & -1 & 1 & 1 & 1 & 1 & -1 \\
+$S_3$ & 1 & -1 & -1 & 1 & -1 & -1 & 1 & -1 & 1 & 1 \\
+$S_4$ & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{minipage}[b]{0.4\linewidth}
+\begin{tabular}{c|cccc}
+$\mu$ & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & \textcolor{red}{0.9} & 0 & 0.5 & 0.5 \\
+$C_2$ & - & \textcolor{red}{0.9} & 0.5 & 0.3 \\
+$C_3$ & - & - & 1 & 0.5 \\
+$C_4$ & - & - & - & 1
+\end{tabular}
+\end{minipage}
+\begin{minipage}[b]{0.4\linewidth}
+\begin{tabular}{c|cccc}
+$\nu$ & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & 0 & 0.8 & 0.4 & 0.4 \\
+$C_2$ & - & 0 & 0.4 & 0.6 \\
+$C_3$ & - & - & 0 & 0.5 \\
+$C_4$ & - & - & - & 0
+\end{tabular}
+\end{minipage}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+Метод \textbf{$\nu$-biased}.
+
+\bigskip
+Сравнения за матрица $\mu$: $1=1$, $-1=-1$.\\
+Сравнения за матрица $\nu$: $0\neq0$, $-1\neq1$, $1\neq-1$.\\
+Сравнението $0$ и $0$ се брои за противозначен елемент.
+
+\begin{center}
+\begin{tabular}{c|cccccccccc}
+& & & & & & & & & & \\
+\hline $S_1$ & 1 & 1 & -1 & 0 & 1 & -1 & -1 & -1 & -1 & 1 \\
+$S_2$ & 0 & -1 & 1 & 1 & -1 & 1 & 1 & 1 & 1 & -1 \\
+$S_3$ & 1 & -1 & -1 & 1 & -1 & -1 & 1 & -1 & 1 & 1 \\
+$S_4$ & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{minipage}[b]{0.4\linewidth}
+\begin{tabular}{c|cccc}
+$\mu$ & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & \textcolor{red}{0.9} & 0 & 0.5 & 0.5 \\
+$C_2$ & - & \textcolor{red}{0.9} & 0.5 & 0.3 \\
+$C_3$ & - & - & 1 & 0.5 \\
+$C_4$ & - & - & - & 1
+\end{tabular}
+\end{minipage}
+\begin{minipage}[b]{0.4\linewidth}
+\begin{tabular}{c|cccc}
+$\nu$ & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & \textcolor{red}{0.1} & 0.8 & 0.4 & 0.4 \\
+$C_2$ & - & \textcolor{red}{0.1} & 0.4 & 0.6 \\
+$C_3$ & - & - & 0 & 0.5 \\
+$C_4$ & - & - & - & 0
+\end{tabular}
+\end{minipage}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+Метод \textbf{Balanced}.
+
+\bigskip
+Изчисляваме методите $\mu$-biased и $\nu$-biased.\\
+Елементите от матрица $\mu$ са равни на: ($\mu_{\text{първи метод}}$ + $\mu_{\text{трети метод}}$)/2\\
+Елементите от матрица $\nu$ са равни на: ($\nu_{\text{първи метод}}$ + $\nu_{\text{трети метод}}$)/2\\
+Сравнението $0$ и $0$ се брои наполовина към съвпадащите елементи и наполовина към противозначните елементи.
+
+\begin{center}
+\begin{tabular}{c|cccccccccc}
+& & & & & & & & & & \\
+\hline $S_1$ & 1 & 1 & -1 & 0 & 1 & -1 & -1 & -1 & -1 & 1 \\
+$S_2$ & 0 & -1 & 1 & 1 & -1 & 1 & 1 & 1 & 1 & -1 \\
+$S_3$ & 1 & -1 & -1 & 1 & -1 & -1 & 1 & -1 & 1 & 1 \\
+$S_4$ & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1 & -1
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{minipage}[b]{0.4\linewidth}
+\begin{tabular}{c|cccc}
+$\mu$ & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & \textcolor{red}{0.95} & 0 & 0.5 & 0.5 \\
+$C_2$ & - & \textcolor{red}{0.95} & 0.5 & 0.3 \\
+$C_3$ & - & - & 1 & 0.5 \\
+$C_4$ & - & - & - & 1
+\end{tabular}
+\end{minipage}
+\begin{minipage}[b]{0.4\linewidth}
+\begin{tabular}{c|cccc}
+$\nu$ & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & \textcolor{red}{0.05} & 0.8 & 0.4 & 0.4 \\
+$C_2$ & - & \textcolor{red}{0.05} & 0.4 & 0.6 \\
+$C_3$ & - & - & 0 & 0.5 \\
+$C_4$ & - & - & - & 0
+\end{tabular}
+\end{minipage}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+Метод \textbf{Weighted}.
+
+\bigskip
+Изчисляваме метод Unbiased.
+Създаваме нова матрица $P$, която е сбор на матриците $\mu$ и $\nu$ на метода Unbiased:
+$P = \mu_{\text{втори метод}} + \nu_{\text{втори метод}}$.
+
+\bigskip
+$\mu_{\text{пети метод}} := \mu_{\text{втори метод}} + \dfrac{\mu_{\text{втори метод}}}{P}(1 - P) = \dfrac{\mu_{\text{втори метод}}}{P}$
+$\nu_{\text{пети метод}} := \nu_{\text{втори метод}} + \dfrac{\nu_{\text{втори метод}}}{P}(1 - P) = \dfrac{\nu_{\text{втори метод}}}{P}$
+
+\bigskip
+Изчисленията се извършват поелементно. Това е за $P[i][j] \neq 0$.\\
+Ако $P[i][j] = 0$, то този елемент е равен на 0.5 и за двете матрици.
+
+\bigskip
+Припомняме матриците от метода Unbiased:
+\begin{center}
+\begin{minipage}[b]{0.4\linewidth}
+\begin{tabular}{c|cccc}
+$\mu$ & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & 0.9 & 0 & 0.5 & 0.5 \\
+$C_2$ & - & 0.9 & 0.5 & 0.3 \\
+$C_3$ & - & - & 1 & 0.5 \\
+$C_4$ & - & - & - & 1
+\end{tabular}
+\end{minipage}
+\begin{minipage}[b]{0.4\linewidth}
+\begin{tabular}{c|cccc}
+$\nu$ & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & 0 & 0.8 & 0.4 & 0.4 \\
+$C_2$ & - & 0 & 0.4 & 0.6 \\
+$C_3$ & - & - & 0 & 0.5 \\
+$C_4$ & - & - & - & 0
+\end{tabular}
+\end{minipage}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+Матрицата $P$:
+\begin{center}
+\begin{tabular}{c|cccc}
+$P$ & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & 0.9 & 0.8 & 0.9 & 0.9 \\
+$C_2$ & - & 0.9 & 0.9 & 0.9 \\
+$C_3$ & - & - & 1 & 1 \\
+$C_4$ & - & - & - & 1
+\end{tabular}
+\end{center}
+
+Новите матрици за метода Weighted:
+\begin{center}
+\begin{minipage}[b]{0.48\linewidth}
+\begin{tabular}{c|cccc}
+$\mu$ & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & 1 & 0 & 0.5556 & 0.5556 \\
+$C_2$ & - & 1 & 0.5556 & 0.3333 \\
+$C_3$ & - & - & 1 & 0.5 \\
+$C_4$ & - & - & - & 1
+\end{tabular}
+\end{minipage}
+\begin{minipage}[b]{0.48\linewidth}
+\begin{tabular}{c|cccc}
+$\nu$ & $C_1$ & $C_2$ & $C_3$ & $C_4$ \\
+\hline $C_1$ & 0 & 1 & 0.4444 & 0.4444 \\
+$C_2$ & - & 0 & 0.4444 & 0.6667 \\
+$C_3$ & - & - & 0 & 0.5 \\
+$C_4$ & - & - & - & 0
+\end{tabular}
+\end{minipage}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\begin{thebibliography}{9}
+\bibitem{amv2014} Atanassov K., D. Mavrov, V. Atanassova (2014). InterCriteria Decision Making: A New Approach for Multicriteria Decision Making, Based on Index Matrices and Intuitionistic Fuzzy Sets, Issues in Intuitionistic Fuzzy Sets and Generalized Nets, 11, 1-8.
+\bibitem{atanassov2014} Atanassov K. (2014). Index Matrices: Towards an Augmented Matrix Calculus. Studies in Computational Intelligence, 573.
+\bibitem{atanassov2012} Atanassov K. (2012). On Intuitionistic Fuzzy Sets Theory, Springer, Berlin.
+\bibitem{icrasite} \url{http://intercriteria.net/software/}\\
+\url{http://justmathbg.info/files/math/}
+\end{thebibliography}
+\end{frame}
+
+
+\begin{frame}
+\begin{center}
+Благодаря за вниманието!
+\end{center}
+
+\vfill
+Авторите изказват благодарност на проекта DFNI-I-02-5 ``InterCriteria Analysis: A New Approach to Decision Making''
+финансиран от Фонд научни изследвания.
+\end{frame}
+
+
+\end{document}
+

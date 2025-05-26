@@ -1,0 +1,271 @@
+%%%
+%%% Readme for ICrAData v2.7
+%%%
+%%% Nikolay Ikonomov
+%%%
+%%% 22 March 2025
+%%%
+
+\documentclass[11pt, a4paper]{article}
+\usepackage[a4paper, margin=3cm]{geometry}
+\usepackage{url}
+
+\begin{document}
+
+\title{\textbf{ICrAData v2.7}}
+\author{\textit{InterCriteria Analysis algorithms:}\\
+Krassimir Atanassov, Olympia Roeva, Velichka Traneva, Peter Vassilev\\
+\textit{Software programming:}\\
+Nikolay Ikonomov}
+\date{22 March 2025}
+\maketitle
+
+% \tableofcontents
+
+\newpage
+The name of the application ICrAData stands for InterCriteria Analysis Data.
+For basic information about the algorithms see the presentation in \verb|docs| directory,
+for details see the articles in \verb|external| directory.
+
+
+\section{Application}
+
+The application is written in \verb|C/FLTK|.
+Start the application from \verb|ICrAData.sh| on Linux, \verb|ICrAData.exe| on Windows,
+alternatively try \verb|ICrADataMSVC.exe| on Windows.
+
+The basic example is already loaded:
+\begin{verbatim}
+x;E;F;G;H;I
+A;6;5;3;7;6
+B;7;7;8;1;3
+C;4;3;5;9;1
+D;4;5;6;7;8
+\end{verbatim}
+For the example to process, select Semicolon separator and mark the Headers.
+Then click the button Analysis to make the calculations and view the plot.
+
+If headers exist, note that the first element on the first row must be present, even though it does not affect the data.
+Otherwise the application reports error ``All column sizes per row must match (including the header)''.
+
+
+\section{Algorithms}
+
+There are Variants and Methods. Variants are the algorithms by which the matrix is processed.
+Usually that is a single matrix, also known as Standard ICrA Method.
+
+The other methods must be applied to at least three matrices. There is matrix count MatCnt option for that.
+
+\medskip
+\textit{Standard ICrA Method:} applies the base algorithm (ICrA Variant) over a single matrix, and displays the result.
+
+\medskip
+\textit{Aggregated ICrA Method:} requires at least three matrices, the input matrix is split by the MatCnt option.
+The base algorithm is applied over each matrix.
+Then is applied an aggregation over the matrix count: average of all elements at each $(i,j)$ index,
+maximum/minimum of all elements at each $(i,j)$ index.
+
+\medskip
+\textit{Criteria Pair ICrA Method:} requires at least three matrices, the input matrix is split by the MatCnt option.
+The base algorithm is applied over each matrix. This result is written as rows of two new matrices, one for $\mu$ and one for $\nu$.
+The intermediary step is two matrices with number of rows equal the matrix count,
+number of columns equal the number of elements of upper triangular matrix from the base algorithm.
+
+A criteria pair (special method) is applied to these two matrices, which results in a new ICrA matrix, that is displayed.
+This special method applies the base algorithm over an Ordered Pair (this functionality is used only here).
+
+\medskip
+ICrAData v1.8 has the capability to load data files as Ordered Pair, which is not yet implemented in the 2.x branch.
+
+
+\section{Result}
+
+Table view can be changed by the drop down menus.
+The values for Alpha and Beta refresh the tables and the plot.
+Table and plot colors:
+\begin{itemize}
+\item $\mu > \alpha$ and $\nu < \beta$ -- Positive Consonance -- green,
+\item $\mu < \beta$ and $\nu > \alpha$ -- Negative Consonance -- red,
+\item all other cases -- Dissonance -- magenta.
+\end{itemize}
+The Export button allows saving the input or result matrix in several different ways:
+\begin{itemize}
+\item input -- save the input matrix with these parameters;
+\item $\mu$/$\nu$ output -- $\mu$ data is saved in the upper triangular part of the result matrix,
+$\nu$ data is saved in the lower triangular part of the result matrix,
+this option saves the result matrix the way it is stored in memory;
+\item $(\mu;\nu)$ table -- save the result matrix as a full mirror matrix -- values for $(\mu;\nu)$
+are repeated in the upper/lower part of the saved matrix file;
+\item $\mu$ table -- mirror matrix for $\mu$ values;
+\item $\nu$ table -- mirror matrix for $\nu$ values;
+\item vector upper -- save the result matrix as a vector -- headers, values, indexes -- per each cell per row,
+iterate over the upper triangular part of the result matrix;
+\item vector lower -- save the result matrix as a vector -- headers, values, indexes -- per each cell per row,
+iterate over the lower triangular part of the result matrix, different ordering of the elements compared to vector upper.
+\end{itemize}
+
+
+\section{Plot}
+
+Top of the right panel:
+\begin{itemize}
+\item Circle size -- size of the plot points.
+\item Color/Marks/Grid/Text are displayed in the right panel.
+\item Button TeX saves the plot in TeX format with 9 parameters:
+Alpha, Beta, Points, Matrix break, Jump after matrix break, Color, Marks, Grid, Text.
+If there are too many points on the plot, the TeX file might be so large, that it does not compile.
+Then increase the Jump to 50 so that TeX makes the PDF file.
+\item Button PNG saves the plot in PNG format as displayed in the right panel.
+\end{itemize}
+Bottom of the right panel:
+\begin{itemize}
+\item Clock/Matrix -- when matrix rows or columns are greater than this value, show a clock during calculations and apply Jump for the plot.
+\item Jump/Matrix -- skip this many elements when drawing the plot. Very useful for big data, change it to redraw the plot.
+\item Threads -- maximum count of CPU threads to use for the calculations. Affects the speed of the calculations, this option is always enabled.
+\item Light/Dark -- default is dark mode, light mode is useful for PNG image of the plot, since the background is white.
+\end{itemize}
+
+A comment is required here -- the multi-threaded code is always enabled, for all calculations, regardless of the value of Clock/Matrix --
+this option is only for showing the clock, otherwise the user interface is blocked until the calculations complete.
+
+
+\section{High speed calculations}
+
+The high performance code uses a very famous library -- GNU OpenMP. This library utilizes the CPU fully,
+but if you start an application, CPU usage will be lowered, and your computer will be usable normally.
+This way calculations will take longer to complete.
+
+There are two possible problems:
+
+1) If the input matrix is too big, and calculations complete, then displaying the plot and the tables might take too long -- hours.
+Therefore, by default, the tables are hidden for value greater than Clock/Matrix, and only the plot is displayed.
+If the plot takes more than one minute to draw, it is very likely that the tables will take forever to draw.
+In this case, use the Export button to save the tables to hard drive, and then open them with MS Excel/LibreOffice Calc.
+
+2) There is a technology known as pagefile on Windows and swapfile on Linux.
+This technology moves stuff from RAM to HDD if the applications require more than your physical memory.
+As expected, this locks the HDD fully, and your computer hangs.
+There is no workaround, except deactivating this technology, or bying more RAM.
+
+Windows -- Search -- Advanced System Settings -- Performance -- Settings -- Advanced -- Virtual Memory --
+Change -- No paging file -- Set for all HDDs -- reboot the computer
+
+Linux -- swapoff -a -- vim /etc/fstab -- comment \# all lines containing swap -- save file -- rm /swapfile to clean up
+
+Also, you can reduce the size of the input matrix :) hint, hint :)
+
+
+\section{Acknowledgements}
+
+This software application has been developed with the partial financial support of:
+
+Changes in versions from \textbf{1.3} to \textbf{2.6} have been implemented for
+project \textbf{DN 17/06 ``A New Approach, Based on an Intercriteria Data Analysis,
+to Support Decision Making in `in silico' Studies of Complex Biomolecular Systems''},
+funded by the National Science Fund of Bulgaria.
+
+Changes in versions from \textbf{0.9.6} to \textbf{1.2} have been implemented for
+project \textbf{DFNI-I-02-5 ``InterCriteria Analysis: A New Approach to Decision Making''},
+funded by the National Science Fund of Bulgaria.
+
+
+\section{Credits}
+
+This software application contains statically compiled code from
+FLTK 1.4.2 / 23-Feb-2025 \url{https://www.fltk.org/}.
+
+
+% \newpage
+\section{Changelog}
+
+\begin{itemize}
+\item Version 2.7 (22 March 2025) [C/FLTK]
+\begin{itemize}
+\item Synchronized open/save file parameters with ICrAData v1.9.1
+\item Application saves text files by default
+\item Plot image circles are now always drawn properly [from 2.6]
+\end{itemize}
+
+\item {\it Version 1.9.1 (November 16, 2024) [Java]}
+\begin{itemize}\it
+\item Improved open/save file parameters detection
+\item Enabled HiDPI when saving plot graphic and screenshot
+\end{itemize}
+
+\item {\it Version 1.9 (October 5, 2024) [Java]}
+\begin{itemize}\it
+\item Reworked export options for tables
+\item Fixed division by zero in Weighted
+\item Source code refactored
+\end{itemize}
+
+\item Version 2.6 (March 19, 2023) [C/FLTK]
+\begin{itemize}
+\item Light theme by default
+\item PNG plot image is now saved properly [from 2.2]
+\item Plot image circles are now filled
+\end{itemize}
+
+\item Version 2.5 (May 9, 2021) [C/FLTK]
+\begin{itemize}
+\item Re-enabled compilation by MSVC [removed in 2.3]
+\item Table export is now working properly [from 2.1]
+\end{itemize}
+
+\item Version 2.4 (January 10, 2021) [C/FLTK]
+\begin{itemize}
+\item Clarified display/export tables
+\item Removed config.ini
+\end{itemize}
+
+\item {\it Version 1.8 (January 9, 2021) [Java]}
+\begin{itemize}\it
+\item Interface optimized to reflect version 2.3
+\end{itemize}
+
+\item Version 2.3 (August 16, 2020) [C/FLTK]
+\begin{itemize}
+\item Added proper extension when saving files
+\item Added file filters to the file chooser
+\item Scale and colors can be changed from config.ini
+\end{itemize}
+
+\item Version 2.2 (June 24, 2020) [C/FLTK]
+\begin{itemize}
+\item Enabled native file chooser for file operations
+\item PNG plot image is now saved in square size
+\item Scale and colors can be changed from the application
+\end{itemize}
+
+\newpage
+\item Version 2.1 (June 21, 2020) [C/FLTK]
+\begin{itemize}
+\item Added multi-threaded code for much faster calculations
+\item Interface optimized to reflect version 1.7
+\end{itemize}
+
+\item {\it Version 1.7 (June 10, 2020) [Java]}
+\begin{itemize}\it
+\item Algorithms optimized to use less memory
+\item Interface optimized to reflect version 2.0
+\end{itemize}
+
+\item Version 2.0 (January 2, 2020) [C/FLTK]
+\begin{itemize}
+\item Algorithms optimized to use less memory
+\item Application rewrite from the codebase of ICrAData v1.6
+\end{itemize}
+\end{itemize}
+
+
+\section{Download}
+
+Download the application from these links:
+
+\url{https://intercriteria.net/software/}
+
+\url{https://justmathbg.info/icradata2.html}
+
+
+\end{document}
+

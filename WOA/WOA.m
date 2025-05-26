@@ -8,7 +8,7 @@ function [Leader_score,Leader_pos,Convergence_curve] = WOA( ...
 %   lb, ub          : 1×dim vectors of lower/upper bounds
 %   dim             : problem dimensionality
 %   fobj            : function handle, must accept an N×D matrix and
-%                     return an N×1 vector of fitness values
+%                      return an N×1 vector of fitness values
 %
 % Outputs:
 %   Leader_score       : best (minimum) fitness found

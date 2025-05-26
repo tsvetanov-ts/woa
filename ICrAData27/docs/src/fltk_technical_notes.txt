@@ -1,0 +1,56 @@
+>>> FLTK 1.4.2
+https://www.fltk.org/
+https://github.com/fltk/fltk
+
+
+>>> MinGW on Windows 10
+MinGW 19.0 https://nuwen.net/mingw.html
+CMake 3.31 https://cmake.org/
+
+cmake -G "MinGW Makefiles" -D CMAKE_BUILD_TYPE=Release .
+make
+make DESTDIR=C:/work/CXX/mingwinst install
+cd "C:\work\CXX\mingwinst\Program Files (x86)\FLTK"
+xcopy /S /E /I /Y include C:\work\CXX\mwinclude
+xcopy /S /E /I /Y lib C:\work\CXX\mwlib64
+
+
+>>> MSVC on Windows 10
+Microsoft Visual Studio 2022 Community
+Requires C/C++, Windows SDK, CMake
+
+Extract FLTK sources and open CMakeLists.txt
+Select x64-Debug dropdown and Manage Configurations
+Change CMAKE_BUILD_TYPE to Release and save the file
+Select Build -> Install FLTK
+Release build is in sources/out/install/x64-Debug/{include,lib}
+Copy these two folders wherever appropriate
+
+Open terminal with cmd:
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
+
+>>> ICrAData 2.7
+cl /std:c++17 /MD /O2 /openmp /I../vcinclude/ /I../vcinclude/FL/images/ icradata.cxx icra.cxx mytable.cxx mydraw.cxx strfun.cxx zerofun.cxx /link /INCREMENTAL:NO /SUBSYSTEM:WINDOWS /LIBPATH:../vclib64/ fltk.lib fltk_png.lib fltk_z.lib gdi32.lib gdiplus.lib comctl32.lib comdlg32.lib shell32.lib ole32.lib user32.lib advapi32.lib ws2_32.lib winspool.lib vcomp.lib vcruntime.lib
+
+>>> MyGL 2.2
+cl /std:c++17 /MD /O2 /I../vcinclude/ /I../vcinclude/FL/images/ mygl.cxx fun.cxx ngl.cxx stf.cxx pgm.cxx /link /INCREMENTAL:NO /SUBSYSTEM:WINDOWS /LIBPATH:../vclib64/ fltk.lib fltk_png.lib fltk_z.lib fltk_gl.lib opengl32.lib glu32.lib gdi32.lib gdiplus.lib comctl32.lib comdlg32.lib shell32.lib ole32.lib user32.lib advapi32.lib ws2_32.lib winspool.lib
+
+>>> MkBGFire 0.9.8
+cl /std:c++17 /MD /O2 /I../vcinclude/ /I../vcinclude/FL/images/ minterface.cxx mgldraw.cxx mfiremodel.cxx /link /INCREMENTAL:NO /SUBSYSTEM:WINDOWS /LIBPATH:../vclib64/ fltk.lib fltk_png.lib fltk_z.lib fltk_gl.lib opengl32.lib glu32.lib gdi32.lib gdiplus.lib comctl32.lib comdlg32.lib shell32.lib ole32.lib user32.lib advapi32.lib ws2_32.lib winspool.lib
+
+
+>>> GCC 12.2 on Debian 12 for X11
+
+apt install gcc g++ libc6-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev libxcursor-dev libxfixes-dev libxft-dev libxinerama-dev libxrender-dev
+cmake -D CMAKE_BUILD_TYPE=Release -D FLTK_USE_SYSTEM_LIBJPEG=OFF -D FLTK_USE_SYSTEM_LIBPNG=OFF -D FLTK_USE_SYSTEM_ZLIB=OFF -D FLTK_BACKEND_WAYLAND=OFF .
+make
+make DESTDIR=/home/nikolay/work/inst install
+
+
+>>> GCC 12.2 on Debian 12 for Wayland
+
+apt install gcc g++ libc6-dev wayland-protocols libwayland-dev libegl-dev libopengl-dev libdecor-0-dev libpango1.0-dev libxkbcommon-dev
+cmake -D CMAKE_BUILD_TYPE=Release -D FLTK_USE_SYSTEM_LIBJPEG=OFF -D FLTK_USE_SYSTEM_LIBPNG=OFF -D FLTK_USE_SYSTEM_ZLIB=OFF -D FLTK_USE_SYSTEM_LIBDECOR=OFF .
+make
+make DESTDIR=/home/nikolay/work/inst2 install
+
