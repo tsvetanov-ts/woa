@@ -72,11 +72,11 @@ ttt = cputime;
 
 %WOA %
 
-SearchAgents_no=50; % Number of search agents
+SearchAgents_no=300; % Number of search agents
 
 Function_name='F24';% Name of the test function that can be from F1 to F23 (Table 1,2,3 in the paper)
 
-Max_iteration=100; % Maximum number of iterations
+Max_iteration=30; % Maximum number of iterations
 
 % Load details of the selected benchmark function
 [lb,ub,dim,fobj]=Get_Functions_details(Function_name);
